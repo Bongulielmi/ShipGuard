@@ -11,11 +11,13 @@ export async function enqueueScan(project: Project, branch?: string) {
   try {
     const findings = await runScanners(project);
     findingStore.addMany(scan.id, findings);
-    return scanStore.update(scan.id, {
-      status: "completed",
-      finishedAt: now(),
-      findingsCount: findings.length
-    });
+    return (
+      scanStore.update(scan.id, {
+        status: "completed",
+        finishedAt: now(),
+        findingsCount: findings.length
+      }) ?? scan
+    );
   } catch (error) {
     scanStore.update(scan.id, { status: "failed", finishedAt: now() });
     throw error;

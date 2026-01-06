@@ -447,3 +447,19 @@ select {
     padding: 24px;
   }
 }
+
+.tone-critical {
+  border-color: var(--critical);
+}
+
+.tone-high {
+  border-color: var(--high);
+}
+
+.tone-medium {
+  border-color: var(--medium);
+}
+
+.tone-low {
+  border-color: var(--low);
+}
